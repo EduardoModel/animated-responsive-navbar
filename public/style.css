@@ -1,0 +1,250 @@
+/* Set values that can be reused through the code with the :root sudo-class selector */
+:root {
+  font-size: 16px;
+  font-family: 'Montserrat';
+  /* CSS variables that can be used by other classes inside the css */
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+
+  --transition-speed: 600ms;
+
+  /* Standard theme */
+  --gra1: #b6b6b6;
+  --gray2: #ececec;
+  --black1: #23232e;
+  --black2: #141418;
+
+  /* Theme 1 */
+  --onyx1: #393e41;
+  --timber1: #d3d0cb;
+  --oxford1: #000022;
+  --snow1: #fbf5f3;
+
+  /* Theme 2 */
+  --blue1: #171738;
+  --blue2: #3423a6;
+  --pink1: #ec8ded;
+  --pink2: #9f6ba0;
+} 
+
+.standard {
+  --text-primary: var(--gra1);
+  --text-secondary: var(--gray2);
+  --bg-primary: var(--black1);
+  --bg-secondary: var(--black2);
+}
+
+.theme1 {
+  --text-primary: var(--onyx1);
+  --text-secondary: var(--timber1);
+  --bg-primary: var(--oxford1);
+  --bg-secondary: var(--snow1);
+}
+
+.theme2 {
+  --text-primary: var(--blue1);
+  --text-secondary: var(--blue2);
+  --bg-primary: var(--pink1);
+  --bg-secondary: var(--pink2);
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+  background-color: white;
+}
+
+/* Style the scrollbar dimension */
+body::-webkit-scrollbar {
+  width: .25rem;
+
+}
+
+/* Style the scrollbar color */
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+/* Style the scroll thum aka. moving bar */
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+main {
+  margin-left: 5rem; /* Unit relative to the font-size of the root element 1rem = 16px */
+  padding: 1rem;
+  /*
+    This type of unit is very useful
+    because if the font-size changes, the other
+    measurments will stay proportional to the font-size, avoiding to change them
+    manually
+  */
+}
+
+.navbar {
+  position: fixed;
+  background-color: var(--bg-primary);
+  /* Animate the expansion and contraction of the navbar */
+  transition: width 200ms ease;
+}
+
+/* Animate the navbar when hovered */
+.navbar:hover {
+  width: 16rem;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* After the change of the flex-direction the axis change orientation */
+  align-items: center;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.navbar-nav:last-child {
+  /* To move the last child to the bottom of the flexbox */
+  /* Always know what the margin of the elements are doing inside the flexbox */
+  margin-top: auto;
+}
+
+.nav-item:last-child {
+  /* To move the last child to the bottom of the flexbox */
+  /* Always know what the margin of the elements are doing inside the flexbox */
+  margin-top: auto;
+}
+
+.nav-link {
+  display: flex;
+  /* Align the items on the y-axis */
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  /* It is possible to try other effects here as well */
+  filter: grayscale(100%) opacity(0.7);
+  transition: var(--transition-speed);
+}
+
+.nav-link:hover {
+  /* Remove the filter when the elements are hovered */
+  filter: grayscale(0%) opacity(1);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.link-text {
+  /* Show the text only when the user hover on the text */
+  display: none;
+  margin-left: 1rem;
+}
+
+.nav-link svg {
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+
+.fa-primary {
+  color: #ff7eee;
+}
+
+.fa-secondary {
+  color: #df49a6;
+}
+
+.fa-primary,
+.fa-secondary {
+  transition: var(--transition-speed);
+}
+
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+
+.logo svg {
+  transform: rotate(0deg);
+  transition: transform var(--transition-speed);
+}
+
+.navbar:hover .logo svg {
+  /* Rotate counter clockwise */
+  /* Pro tip: keep the animations simple and sober */
+  transform: rotate(-180deg);
+}
+
+/* Style for small screens */
+@media only screen and (max-width: 600px) {
+  .navbar {
+    bottom: 0;
+    /* Just swap the witdh for the height */
+    width: 100vw;
+    height: 5rem;
+  }
+
+  .navbar:hover {
+    width: 100vw;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  /* Change the orientation for the icons */
+  .navbar-nav {
+    flex-direction: row;
+    overflow: auto;
+  }
+
+  .nav-link {
+    justify-content: center;
+  }
+  
+  main {
+    margin: 0;
+  }
+}
+
+/* Style for big screens */
+@media only screen and (min-width: 600px) {
+  .navbar {
+    top: 0;
+    width: 5rem; /* Matches the given width for the main tag */
+    height: 100vh; /* vh is relative to the view height (viewport) */
+  }
+
+  .navbar-nav {
+    height: 100vh;
+  }
+
+  .navbar:hover {
+    width: 16rem;
+  }
+
+  .navbar:hover .link-text {
+    display: inline;
+    transition: opacity var(--transition-speed);
+  }
+
+  .navbar:hover .link-text {
+    /* Show the text inside the points of the navbar */
+    display: block;
+  }
+}
