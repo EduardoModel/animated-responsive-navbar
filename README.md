@@ -1,2 +1,2 @@
 # Animated Responsive Navbar
-### A litte about a cool responsive navbar
+### A litte to know about a cool responsive navbar
